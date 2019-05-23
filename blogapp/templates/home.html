@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+
+{% block contents %}
+
+<body>
+
+    {% for blog in posts %}
+    <br>
+    <br>
+    <div class="container">
+    <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{blog.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted"> {{ blog.pub_date }}</h6>
+              <p class="card-text">{{ blog.summary }}</p>
+              <a href="{% url 'detail' blog.id %}" class="card-link">더보기</a>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+    <br> 
+   
+<div class="container">
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {%if posts.has_previous%}
+        <li class="page-item"><a class="page-link" href="?page=1">First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{posts.previous_page_number}}">Previous</a></li>
+        {%endif%}
+        <li class="page-item"><a class="page-link">{{posts.number}}</a></li>
+        <li class="page-item"><a class="page-link">{{posts.paginator.num_pages}}</a></li>
+        {%if posts.has_next%}
+        <li class="page-item"><a class="page-link" href="?page={{posts.next_page_number}}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{posts.paginator.num_pages}}">Last</a></li>
+        {%endif%}
+      </ul>
+    </nav>
+  </div>
+</body>
+
+{% endblock%}
+

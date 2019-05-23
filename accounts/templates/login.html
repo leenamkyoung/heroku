@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block contents %}
+
+<h1>로그인 페이지 입니다!</h1>
+
+<form method="POST" action="{%urls 'login'%}">
+    {%csrf_token%}
+    username:
+    <br>
+    <input name="username" type="text" value="">
+    <br>
+    password:
+    <br>
+    <input name="password" type="password" value="">
+    <br>
+    confirm password:
+    <br>
+    <input name="btn btn-primary" type="submit" value="로그인">
+</form>
+
+{% endblock %}
